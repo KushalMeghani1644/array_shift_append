@@ -7,10 +7,17 @@ fn main() {
     io::stdin()
         .read_line(&mut input)
         .expect("Please enter a valid number");
-    let new_num: i32 = input.trim().parse().expect("Please enter a valid number");
-    for i in 0..arr.len() - 1 {
-        arr[i] = arr[i + 1];
+    let new_num_result = input.trim().parse::<i32>();
+    match new_num_result {
+        Ok(new_num) => {
+            for i in 0..arr.len() - 1 {
+                arr[i] = arr[i + 1];
+            }
+            arr[arr.len() - 1] = new_num;
+            println!("Updates array: {:?}", arr);
+        }
+        Err(_) => {
+            println!("Invalid input. Please enter a valid number.");
+        }
     }
-    arr[arr.len() - 1] = new_num;
-    println!("Updated array: {:?}", arr);
 }
